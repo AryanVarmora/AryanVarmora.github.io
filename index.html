@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Portfolio of Aryan Varmora - AI, ML, and Software Development">
-  <meta name="keywords" content="Aryan Varmora, AI Engineer, Machine Learning, Software Developer, Portfolio">
+  <meta name="keywords" content="Aryan Varmora, Software Developer, Portfolio">
   <meta name="author" content="Aryan Varmora">
-  <meta property="og:title" content="Aryan Varmora - AI & ML Engineer">
+  <meta property="og:title" content="Aryan Varmora - Compputer Engineer">
   <meta property="og:description" content="Master's in CS | AI & ML Enthusiast | Open to Collaboration">
   <meta property="og:image" content="/assets/profile.jpg">
 
@@ -14,6 +14,9 @@
   <link rel="stylesheet" href="/assets/main.css">
 </head>
 <body>
+
+  <!-- 3D Background Canvas -->
+  <canvas id="bg"></canvas>
 
   <!-- Dark Mode Toggle -->
   <button id="theme-toggle">🌙 Dark Mode</button>
@@ -49,14 +52,11 @@
     <!-- Skills & Tech Stack -->
     <section>
       <h2>Technical Skills</h2>
-      <!-- Tech Stack with alt attributes -->
-        <div class="tech-stack">
-            <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python Programming Badge">
-            <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white" alt="TensorFlow AI Badge">
-            <img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white" alt="Java Programming Badge">
-         </div>
-  
-      
+      <div class="tech-stack">
+        <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python Programming Badge">
+        <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white" alt="TensorFlow AI Badge">
+        <img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white" alt="Java Programming Badge">
+      </div>
     </section>
 
     <!-- Featured Projects -->
@@ -90,35 +90,8 @@
     <p>© 2025 Aryan Varmora. All rights reserved.</p>
   </footer>
 
-  <!-- JavaScript for Typing Animation & Dark Mode -->
-  <script>
-    // Typing Effect
-    const textArray = ["an AI & ML Engineer", "a Software Developer", "a Researcher"];
-    let index = 0, charIndex = 0;
-    function typeText() {
-        if (charIndex < textArray[index].length) {
-            document.getElementById("typing-text").innerHTML += textArray[index][charIndex++];
-            setTimeout(typeText, 100);
-        } else {
-            setTimeout(eraseText, 2000);
-        }
-    }
-    function eraseText() {
-        if (charIndex > 0) {
-            document.getElementById("typing-text").innerHTML = textArray[index].slice(0, --charIndex);
-            setTimeout(eraseText, 50);
-        } else {
-            index = (index + 1) % textArray.length;
-            setTimeout(typeText, 1000);
-        }
-    }
-    typeText();
+  <!-- JavaScript for 3D Effects, Typing Animation & Dark Mode -->
+  <script type="module" src="script.js"></script>
 
-    // Dark Mode Toggle
-    const themeToggle = document.getElementById("theme-toggle");
-    themeToggle.addEventListener("click", () => {
-      document.body.classList.toggle("dark-mode");
-    });
-  </script>
 </body>
 </html>

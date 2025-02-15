@@ -81,4 +81,33 @@ body {
     padding: 10px;
     margin-top: 20px;
   }
+  /* Neon Hover Effects */
+ nav ul li a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+  
+  nav ul li a:hover {
+    color: cyan;
+    text-shadow: 0px 0px 10px cyan;
+  }
+  
+  /* Smooth Page Scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Glowing Buttons */
+  .btn {
+    background: linear-gradient(90deg, cyan, blue);
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .btn:hover {
+    filter: brightness(1.2);
+  }
   
