@@ -6,28 +6,27 @@ body {
     background: #f5f5f5;
     color: #333;
     text-align: center;
+    transition: background 0.5s ease, color 0.5s ease; /* Smooth transition */
 }
 
 /* Dark Mode */
 .dark-mode {
-    background-color: #111; /* Darker for contrast */
+    background-color: #111; /* Darker background */
     color: white;
 }
 
-/* Hero Section - Improved */
+/* Hero Section - Fixed for Dark Mode */
 #hero {
     background: linear-gradient(90deg, #001f3f, #007bff);
     color: white;
     padding: 80px 20px;
     text-align: center;
     box-shadow: 0px 4px 10px rgba(0, 255, 255, 0.3);
+    transition: background 0.5s ease;
 }
 
-#hero h1 {
-    font-size: 2.8rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.6);
+.dark-mode #hero {
+    background: linear-gradient(90deg, #000, #004080); /* Dark Mode Adjusted */
 }
 
 /* Buttons - Improved Hover */
@@ -49,6 +48,10 @@ body {
     box-shadow: 0px 0px 15px cyan;
 }
 
+.dark-mode .btn {
+    background: linear-gradient(90deg, #00d4ff, #007bff);
+}
+
 /* Navigation */
 nav {
     background: #222;
@@ -58,8 +61,14 @@ nav {
     width: 100%;
     z-index: 1000;
     box-shadow: 0px 2px 10px rgba(0, 255, 255, 0.3); /* Soft Glow */
+    transition: background 0.5s ease;
 }
 
+.dark-mode nav {
+    background: #000;
+}
+
+/* Navigation Links */
 nav ul {
     list-style: none;
     padding: 0;
@@ -109,23 +118,6 @@ html {
     box-shadow: 0px 0px 20px rgba(0, 255, 255, 0.7);
 }
 
-/* Footer */
-footer {
-    background: #222;
-    color: white;
-    padding: 10px;
-    margin-top: 20px;
-}
-
-/* Dark Mode Improvements */
-.dark-mode nav {
-    background: #000;
-}
-
-.dark-mode .btn {
-    background: linear-gradient(90deg, #00d4ff, #007bff);
-}
-
 .dark-mode .project {
     background: #222;
     color: white;
@@ -133,6 +125,19 @@ footer {
 
 .dark-mode .project:hover {
     box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.8);
+}
+
+/* Footer */
+footer {
+    background: #222;
+    color: white;
+    padding: 10px;
+    margin-top: 20px;
+    transition: background 0.5s ease;
+}
+
+.dark-mode footer {
+    background: #000;
 }
 
 /* Dark Mode Toggle - Improved */
@@ -146,10 +151,17 @@ footer {
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
-    transition: 0.3s;
+    transition: background 0.3s, box-shadow 0.3s ease;
 }
 
 #theme-toggle:hover {
     background: cyan;
     box-shadow: 0px 0px 10px cyan;
 }
+
+/* Dark Mode Toggle Fix */
+.dark-mode #theme-toggle {
+    background: #00d4ff;
+    color: black;
+}
+

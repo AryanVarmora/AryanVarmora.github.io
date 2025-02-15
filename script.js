@@ -27,7 +27,7 @@ for (let i = 0; i < particlesCount * 3; i++) {
 particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
 const particlesMaterial = new THREE.PointsMaterial({
-  color: 0x00ffff,
+  color: 0x00ffff, // Default bright cyan
   size: 0.05,
   transparent: true,
   opacity: 0.7,
@@ -69,15 +69,40 @@ window.addEventListener('resize', () => {
   camera.updateProjectionMatrix();
 });
 
-// Dark Mode Toggle for Particles
-const themeToggle = document.getElementById("theme-toggle");
-themeToggle.addEventListener("click", () => {
-  document.body.classList.toggle("dark-mode");
-  
-  // Toggle particles visibility in dark mode
-  if (document.body.classList.contains("dark-mode")) {
-    particlesMaterial.color.set(0x00ffff); // Cyan particles in dark mode
-  } else {
-    particlesMaterial.color.set(0x000000); // Make particles less visible in light mode
+// Ensure Dark Mode Toggle Works When Page Loads
+document.addEventListener("DOMContentLoaded", () => {
+  const themeToggle = document.getElementById("theme-toggle");
+
+  // Function to update particles color
+  function updateParticlesColor() {
+    if (document.body.classList.contains("dark-mode")) {
+      particlesMaterial.color.set(0xffffff); // White particles in Dark Mode
+    } else {
+      particlesMaterial.color.set(0x00ffff); // Cyan particles in Light Mode
+    }
   }
+
+  // Check User Preference in Local Storage
+  if (localStorage.getItem("dark-mode") === "enabled") {
+    document.body.classList.add("dark-mode");
+    themeToggle.textContent = "☀️ Light Mode";
+    updateParticlesColor();
+  }
+
+  // Toggle Dark Mode on Button Click
+  themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+
+    // Save User Preference in Local Storage
+    if (document.body.classList.contains("dark-mode")) {
+      localStorage.setItem("dark-mode", "enabled");
+      themeToggle.textContent = "☀️ Light Mode";
+    } else {
+      localStorage.setItem("dark-mode", "disabled");
+      themeToggle.textContent = "🌙 Dark Mode";
+    }
+
+    // Update particles color
+    updateParticlesColor();
+  });
 });
