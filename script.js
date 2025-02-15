@@ -107,19 +107,61 @@ document.addEventListener("scroll", () => {
     particlesMesh.position.y = scrollY * 0.005;
 });
 
+// GSAP Animations for Smooth UI Transitions
+document.addEventListener("DOMContentLoaded", () => {
+  gsap.from("h1", { duration: 1, opacity: 0, y: -50, ease: "power3.out" });
+  gsap.from("p", { duration: 1.2, opacity: 0, y: 30, delay: 0.2, ease: "power3.out" });
+  gsap.from(".btn", { duration: 1.5, opacity: 0, scale: 0.8, delay: 0.5, ease: "back.out(1.7)" });
+});
+
 // Futuristic Cursor Glow Effect
 const cursor = document.createElement("div");
-cursor.style.width = "15px";
-cursor.style.height = "15px";
-cursor.style.borderRadius = "50%";
-cursor.style.position = "absolute";
-cursor.style.background = "cyan";
-cursor.style.boxShadow = "0px 0px 10px cyan";
-cursor.style.pointerEvents = "none";
-cursor.style.transition = "transform 0.1s ease-out";
+cursor.classList.add("cursor-glow");
 document.body.appendChild(cursor);
 
 document.addEventListener("mousemove", (e) => {
-    cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+    gsap.to(cursor, {
+        x: e.clientX,
+        y: e.clientY,
+        duration: 0.1,
+        ease: "power1.out",
+    });
 });
 
+// Scroll-Based Animations
+gsap.utils.toArray("section").forEach((section) => {
+  gsap.from(section, {
+      scrollTrigger: {
+          trigger: section,
+          start: "top 80%", 
+          end: "bottom 50%",
+          toggleActions: "play none none reverse",
+      },
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      ease: "power2.out",
+  });
+});
+
+// Floating Dots in Background
+const floatingElements = [];
+for (let i = 0; i < 20; i++) {
+    let div = document.createElement("div");
+    div.className = "floating-dot";
+    document.body.appendChild(div);
+    floatingElements.push(div);
+}
+
+floatingElements.forEach((dot) => {
+    gsap.to(dot, {
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        scale: Math.random() * 1.5 + 0.5,
+        opacity: Math.random() * 0.7 + 0.3,
+        duration: Math.random() * 5 + 3,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+    });
+});
