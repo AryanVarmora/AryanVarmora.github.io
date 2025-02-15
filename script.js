@@ -17,11 +17,11 @@ document.body.appendChild(renderer.domElement);
 
 // Create Floating Particles
 const particlesGeometry = new THREE.BufferGeometry();
-const particlesCount = 1200; // More particles for a richer effect
+const particlesCount = 1500; // Increased for a richer effect
 const positions = new Float32Array(particlesCount * 3);
 
 for (let i = 0; i < particlesCount * 3; i++) {
-  positions[i] = (Math.random() - 0.5) * 25; // More depth range
+  positions[i] = (Math.random() - 0.5) * 30; // Increased depth range
 }
 
 particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
@@ -50,8 +50,8 @@ function animate() {
   requestAnimationFrame(animate);
 
   // Rotate the particle field slightly
-  particlesMesh.rotation.y += 0.0005;
-  particlesMesh.rotation.x += 0.0003;
+  particlesMesh.rotation.y += 0.0007;
+  particlesMesh.rotation.x += 0.0004;
 
   // Smooth Parallax Effect
   camera.position.x += (mouseX - camera.position.x) * 0.02;
@@ -76,8 +76,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Function to update particles color
   function updateParticlesColor() {
     if (document.body.classList.contains("dark-mode")) {
-      particlesMaterial.color.set(0x888888); // Dim gray particles in Dark Mode
-      particlesMaterial.opacity = 0.3; // Lower opacity for subtle effect
+      particlesMaterial.color.set(0x444444); // Dim gray particles in Dark Mode
+      particlesMaterial.opacity = 0.3;
     } else {
       particlesMaterial.color.set(0x00ffff); // Cyan in Light Mode
       particlesMaterial.opacity = 0.7;
@@ -109,4 +109,57 @@ document.addEventListener("DOMContentLoaded", () => {
     // Update particles color
     updateParticlesColor();
   });
+
+  updateParticlesColor();
+});
+
+// Dynamic Typing Effect for Hero Section
+const textArray = ["an AI & ML Engineer", "a Software Developer", "a Researcher"];
+let index = 0, charIndex = 0;
+const typingText = document.getElementById("typing-text");
+
+function typeText() {
+    if (charIndex < textArray[index].length) {
+        typingText.innerHTML += textArray[index][charIndex++];
+        setTimeout(typeText, 100);
+    } else {
+        setTimeout(eraseText, 2000);
+    }
+}
+
+function eraseText() {
+    if (charIndex > 0) {
+        typingText.innerHTML = textArray[index].slice(0, --charIndex);
+        setTimeout(eraseText, 50);
+    } else {
+        index = (index + 1) % textArray.length;
+        setTimeout(typeText, 1000);
+    }
+}
+
+// Start Typing Effect
+if (typingText) {
+    typeText();
+}
+
+// Parallax Scrolling Effect
+document.addEventListener("scroll", () => {
+    let scrollY = window.scrollY;
+    particlesMesh.position.y = scrollY * 0.005; // Moves particles up/down on scroll
+});
+
+// Futuristic Cursor Glow Effect
+const cursor = document.createElement("div");
+cursor.style.width = "15px";
+cursor.style.height = "15px";
+cursor.style.borderRadius = "50%";
+cursor.style.position = "absolute";
+cursor.style.background = "cyan";
+cursor.style.boxShadow = "0px 0px 10px cyan";
+cursor.style.pointerEvents = "none";
+cursor.style.transition = "transform 0.1s ease-out";
+document.body.appendChild(cursor);
+
+document.addEventListener("mousemove", (e) => {
+    cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
 });
