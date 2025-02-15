@@ -128,6 +128,7 @@ document.addEventListener("mousemove", (e) => {
     });
 });
 
+
 // Scroll-Based Animations
 gsap.utils.toArray("section").forEach((section) => {
   gsap.from(section, {
@@ -164,4 +165,31 @@ floatingElements.forEach((dot) => {
         yoyo: true,
         ease: "sine.inOut",
     });
+});
+
+// Scroll-Based Animations (Fade-in Sections)
+gsap.utils.toArray("section").forEach((section) => {
+  gsap.from(section, {
+      scrollTrigger: {
+          trigger: section,
+          start: "top 80%", 
+          end: "bottom 50%",
+          toggleActions: "play none none reverse",
+      },
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      ease: "power2.out",
+  });
+});
+document.addEventListener("mousemove", (event) => {
+  const x = (event.clientX / window.innerWidth - 0.5) * 2;
+  const y = -(event.clientY / window.innerHeight - 0.5) * 2;
+
+  gsap.to(particlesMesh.rotation, {
+    x: y * 0.05,
+    y: x * 0.05,
+    duration: 1,
+    ease: "power2.out",
+  });
 });
