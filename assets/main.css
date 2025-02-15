@@ -225,3 +225,10 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+.dark-mode h2, .dark-mode h3 {
+    color: #00ffff; /* Futuristic cyan */
+}
+
+.dark-mode p {
+    color: #cccccc;
+}

@@ -76,13 +76,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // Function to update particles color
   function updateParticlesColor() {
     if (document.body.classList.contains("dark-mode")) {
-      particlesMaterial.color.set(0x444444); // Dim gray particles in Dark Mode
-      particlesMaterial.opacity = 0.3;
+       particlesMaterial.color.set(0x444444); // Dim gray particles in Dark Mode
+       particlesMaterial.opacity = 0.3;
     } else {
-      particlesMaterial.color.set(0x00ffff); // Cyan in Light Mode
-      particlesMaterial.opacity = 0.7;
+       particlesMaterial.color.set(0x00ffff); // Cyan in Light Mode
+       particlesMaterial.opacity = 0.4; // Reduce brightness
     }
-  }
+ }
+ 
 
   // Set Initial Dark Mode State
   if (localStorage.getItem("dark-mode") === "enabled") {
