@@ -1,77 +1,53 @@
-/* General Styles */
+/* General Dark Mode */
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background: #f5f5f5;
-    color: #333;
+    background: #111;
+    color: white;
     text-align: center;
     transition: background 0.5s ease, color 0.5s ease;
 }
 
-/* Dark Mode */
-.dark-mode {
-    background-color: #0a0a0a;
-    color: white;
-}
-
 /* Hero Section */
 #hero {
-    background: linear-gradient(90deg, #001f3f, #007bff);
+    background: linear-gradient(90deg, #000d1a, #004080);
     color: white;
-    padding: 120px 20px;
+    padding: 100px 20px;
     text-align: center;
     box-shadow: 0px 4px 10px rgba(0, 255, 255, 0.3);
-    transition: background 0.5s ease;
-}
-
-.dark-mode #hero {
-    background: linear-gradient(90deg, #000, #004080);
 }
 
 /* Navigation */
 nav {
-    background: #222;
+    background: #000;
     padding: 15px;
     position: sticky;
     top: 0;
     width: 100%;
     z-index: 1000;
     box-shadow: 0px 2px 10px rgba(0, 255, 255, 0.3);
-    transition: background 0.5s ease;
 }
 
-.dark-mode nav {
-    background: #000;
-}
-
-/* Navigation Links */
 nav ul {
     list-style: none;
     padding: 0;
-    display: flex;
-    justify-content: center;
 }
 
 nav ul li {
-    margin: 0 20px;
+    display: inline;
+    margin-right: 20px;
 }
 
 nav ul li a {
     color: white;
     text-decoration: none;
     font-weight: bold;
-    transition: 0.3s ease-in-out;
 }
 
 nav ul li a:hover {
     color: cyan;
     text-shadow: 0px 0px 10px cyan;
-}
-
-/* Smooth Page Scrolling */
-html {
-    scroll-behavior: smooth;
 }
 
 /* Buttons */
@@ -93,142 +69,18 @@ html {
     box-shadow: 0px 0px 15px cyan;
 }
 
-.dark-mode .btn {
-    background: linear-gradient(90deg, #00d4ff, #007bff);
-    border: 1px solid rgba(0, 255, 255, 0.5);
-    box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.4);
-}
-
-.dark-mode .btn:hover {
-    filter: brightness(1.2);
-    box-shadow: 0px 0px 20px cyan;
-}
-
-/* Projects Grid */
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 20px;
-}
-
 /* Project Cards */
 .project {
-    background: white;
+    background: #111;
     padding: 15px;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 255, 255, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.project:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 0px 20px rgba(0, 255, 255, 0.7);
-}
-
-/* Dark Mode Project Cards */
-.dark-mode .project {
-    background: #222;
-    color: white;
-    border: 1px solid rgba(0, 255, 255, 0.2);
-    box-shadow: 0px 0px 10px rgba(0, 255, 255, 0.2);
-}
-
-.dark-mode .project:hover {
-    box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.8);
+    box-shadow: 0 4px 10px rgba(0, 255, 255, 0.5);
 }
 
 /* Footer */
 footer {
-    background: #222;
+    background: #000;
     color: white;
     padding: 10px;
     margin-top: 20px;
-    transition: background 0.5s ease;
-}
-
-.dark-mode footer {
-    background: #000;
-}
-
-/* Dark Mode Toggle */
-#theme-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s, box-shadow 0.3s ease;
-}
-
-#theme-toggle:hover {
-    background: cyan;
-    box-shadow: 0px 0px 10px cyan;
-}
-
-.dark-mode #theme-toggle {
-    background: #00d4ff;
-    color: black;
-}
-
-/* 3D Hover Effects */
-.project {
-    perspective: 1000px;
-}
-
-.project:hover {
-    transform: rotateY(10deg);
-    box-shadow: 0px 10px 20px rgba(0, 255, 255, 0.5);
-}
-
-/* Glowing Effects */
-.glow-text {
-    text-shadow: 0px 0px 10px cyan;
-}
-
-.dark-mode .glow-text {
-    text-shadow: 0px 0px 15px cyan;
-}
-
-/* Animated Floating Icons */
-.floating-icons img {
-    width: 50px;
-    height: auto;
-    animation: floatUpDown 3s infinite ease-in-out alternate;
-}
-
-@keyframes floatUpDown {
-    from {
-        transform: translateY(0px);
-    }
-    to {
-        transform: translateY(-10px);
-    }
-}
-
-/* Responsive Adjustments */
-@media screen and (max-width: 768px) {
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    nav ul li {
-        margin: 10px 0;
-    }
-
-    .projects-grid {
-        grid-template-columns: 1fr;
-    }
-}
-.dark-mode h2, .dark-mode h3 {
-    color: #00ffff; /* Futuristic cyan */
-}
-
-.dark-mode p {
-    color: #cccccc;
 }

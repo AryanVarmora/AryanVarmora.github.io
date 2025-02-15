@@ -27,18 +27,18 @@ for (let i = 0; i < particlesCount * 3; i++) {
 particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
 const particlesMaterial = new THREE.PointsMaterial({
-  color: 0x00ffff, // Default bright cyan
+  color: 0x00ffff, // Bright cyan glow
   size: 0.05,
   transparent: true,
-  opacity: 0.7,
+  opacity: 0.4, // Optimized for dark mode
   depthWrite: false,
-  blending: THREE.AdditiveBlending // Glowing effect
+  blending: THREE.AdditiveBlending
 });
 
 const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
 scene.add(particlesMesh);
 
-// Mouse-based Parallax Effect (Smoother movement)
+// Mouse-based Parallax Effect
 let mouseX = 0, mouseY = 0;
 document.addEventListener('mousemove', (event) => {
   mouseX = (event.clientX / window.innerWidth - 0.5) * 2;
@@ -48,8 +48,6 @@ document.addEventListener('mousemove', (event) => {
 // Animation Loop
 function animate() {
   requestAnimationFrame(animate);
-
-  // Rotate the particle field slightly
   particlesMesh.rotation.y += 0.0007;
   particlesMesh.rotation.x += 0.0004;
 
@@ -69,49 +67,9 @@ window.addEventListener('resize', () => {
   camera.updateProjectionMatrix();
 });
 
-// Ensure Dark Mode Toggle Works When Page Loads
+// Ensure Dark Mode is Always Applied
 document.addEventListener("DOMContentLoaded", () => {
-  const themeToggle = document.getElementById("theme-toggle");
-
-  // Function to update particles color
-  function updateParticlesColor() {
-    if (document.body.classList.contains("dark-mode")) {
-       particlesMaterial.color.set(0x444444); // Dim gray particles in Dark Mode
-       particlesMaterial.opacity = 0.3;
-    } else {
-       particlesMaterial.color.set(0x00ffff); // Cyan in Light Mode
-       particlesMaterial.opacity = 0.4; // Reduce brightness
-    }
- }
- 
-
-  // Set Initial Dark Mode State
-  if (localStorage.getItem("dark-mode") === "enabled") {
-    document.body.classList.add("dark-mode");
-    themeToggle.textContent = "☀️ Light Mode";
-    updateParticlesColor();
-  } else {
-    themeToggle.textContent = "🌙 Dark Mode";
-  }
-
-  // Toggle Dark Mode on Button Click
-  themeToggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-
-    // Save User Preference in Local Storage
-    if (document.body.classList.contains("dark-mode")) {
-      localStorage.setItem("dark-mode", "enabled");
-      themeToggle.textContent = "☀️ Light Mode";
-    } else {
-      localStorage.setItem("dark-mode", "disabled");
-      themeToggle.textContent = "🌙 Dark Mode";
-    }
-
-    // Update particles color
-    updateParticlesColor();
-  });
-
-  updateParticlesColor();
+  document.body.classList.add("dark-mode");
 });
 
 // Dynamic Typing Effect for Hero Section
@@ -146,7 +104,7 @@ if (typingText) {
 // Parallax Scrolling Effect
 document.addEventListener("scroll", () => {
     let scrollY = window.scrollY;
-    particlesMesh.position.y = scrollY * 0.005; // Moves particles up/down on scroll
+    particlesMesh.position.y = scrollY * 0.005;
 });
 
 // Futuristic Cursor Glow Effect
