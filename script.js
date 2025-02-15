@@ -107,11 +107,16 @@ document.addEventListener("scroll", () => {
 });
 
 // 🟢 GSAP Animations for Smooth UI Transitions
-document.addEventListener("DOMContentLoaded", () => {
-  gsap.from("h1", { duration: 1, opacity: 0, y: -50, ease: "power3.out" });
-  gsap.from("p", { duration: 1.2, opacity: 0, y: 30, delay: 0.2, ease: "power3.out" });
-  gsap.from(".btn", { duration: 1.5, opacity: 0, scale: 0.8, delay: 0.5, ease: "back.out(1.7)" });
-});
+if (typeof gsap !== "undefined") {
+  document.addEventListener("DOMContentLoaded", () => {
+    gsap.from("h1", { duration: 1, opacity: 0, y: -50, ease: "power3.out" });
+    gsap.from("p", { duration: 1.2, opacity: 0, y: 30, delay: 0.2, ease: "power3.out" });
+    gsap.from(".btn", { duration: 1.5, opacity: 0, scale: 0.8, delay: 0.5, ease: "back.out(1.7)" });
+  });
+} else {
+  console.error("GSAP not loaded");
+}
+
 
 // 🟢 Futuristic Cursor Glow Effect
 const cursor = document.createElement("div");
