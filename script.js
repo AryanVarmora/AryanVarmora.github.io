@@ -17,11 +17,11 @@ document.body.appendChild(renderer.domElement);
 
 // Create Floating Particles
 const particlesGeometry = new THREE.BufferGeometry();
-const particlesCount = 1500; // Increased for a richer effect
+const particlesCount = 1500;
 const positions = new Float32Array(particlesCount * 3);
 
 for (let i = 0; i < particlesCount * 3; i++) {
-  positions[i] = (Math.random() - 0.5) * 30; // Increased depth range
+  positions[i] = (Math.random() - 0.5) * 30; 
 }
 
 particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
@@ -30,7 +30,7 @@ const particlesMaterial = new THREE.PointsMaterial({
   color: 0x00ffff, // Bright cyan glow
   size: 0.05,
   transparent: true,
-  opacity: 0.4, // Optimized for dark mode
+  opacity: 0.4,
   depthWrite: false,
   blending: THREE.AdditiveBlending
 });
@@ -72,14 +72,14 @@ document.addEventListener("DOMContentLoaded", () => {
   document.body.classList.add("dark-mode");
 });
 
-// Dynamic Typing Effect for Hero Section
+// 🟢 Dynamic Typing Effect for Hero Section
 const textArray = ["an AI & ML Engineer", "a Software Developer", "a Researcher"];
-let index = 0, charIndex = 0;
+let textIndex = 0, textCharIndex = 0;
 const typingText = document.getElementById("typing-text");
 
 function typeText() {
-    if (charIndex < textArray[index].length) {
-        typingText.innerHTML += textArray[index][charIndex++];
+    if (textCharIndex < textArray[textIndex].length) {
+        typingText.innerHTML += textArray[textIndex][textCharIndex++];
         setTimeout(typeText, 100);
     } else {
         setTimeout(eraseText, 2000);
@@ -87,16 +87,15 @@ function typeText() {
 }
 
 function eraseText() {
-    if (charIndex > 0) {
-        typingText.innerHTML = textArray[index].slice(0, --charIndex);
+    if (textCharIndex > 0) {
+        typingText.innerHTML = textArray[textIndex].slice(0, --textCharIndex);
         setTimeout(eraseText, 50);
     } else {
-        index = (index + 1) % textArray.length;
+        textIndex = (textIndex + 1) % textArray.length;
         setTimeout(typeText, 1000);
     }
 }
 
-// Start Typing Effect
 if (typingText) {
     typeText();
 }
@@ -107,14 +106,14 @@ document.addEventListener("scroll", () => {
     particlesMesh.position.y = scrollY * 0.005;
 });
 
-// GSAP Animations for Smooth UI Transitions
+// 🟢 GSAP Animations for Smooth UI Transitions
 document.addEventListener("DOMContentLoaded", () => {
   gsap.from("h1", { duration: 1, opacity: 0, y: -50, ease: "power3.out" });
   gsap.from("p", { duration: 1.2, opacity: 0, y: 30, delay: 0.2, ease: "power3.out" });
   gsap.from(".btn", { duration: 1.5, opacity: 0, scale: 0.8, delay: 0.5, ease: "back.out(1.7)" });
 });
 
-// Futuristic Cursor Glow Effect
+// 🟢 Futuristic Cursor Glow Effect
 const cursor = document.createElement("div");
 cursor.classList.add("cursor-glow");
 document.body.appendChild(cursor);
@@ -128,24 +127,7 @@ document.addEventListener("mousemove", (e) => {
     });
 });
 
-
-// Scroll-Based Animations
-gsap.utils.toArray("section").forEach((section) => {
-  gsap.from(section, {
-      scrollTrigger: {
-          trigger: section,
-          start: "top 80%", 
-          end: "bottom 50%",
-          toggleActions: "play none none reverse",
-      },
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      ease: "power2.out",
-  });
-});
-
-// Floating Dots in Background
+// 🟢 Floating Dots in Background
 const floatingElements = [];
 for (let i = 0; i < 20; i++) {
     let div = document.createElement("div");
@@ -167,29 +149,46 @@ floatingElements.forEach((dot) => {
     });
 });
 
-// Scroll-Based Animations (Fade-in Sections)
-gsap.utils.toArray("section").forEach((section) => {
-  gsap.from(section, {
-      scrollTrigger: {
-          trigger: section,
-          start: "top 80%", 
-          end: "bottom 50%",
-          toggleActions: "play none none reverse",
-      },
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      ease: "power2.out",
-  });
-});
-document.addEventListener("mousemove", (event) => {
-  const x = (event.clientX / window.innerWidth - 0.5) * 2;
-  const y = -(event.clientY / window.innerHeight - 0.5) * 2;
+// 🟢 Hacker-Style Boot Up Text
+const terminalLines = [
+  "Booting up Aryan's AI Engine...",
+  "Initializing neural networks...",
+  "Loading machine learning models...",
+  "Compiling futuristic animations...",
+  "Enabling dark mode environment...",
+  "Connecting to GitHub projects...",
+  "Fetching AI datasets...",
+  "Authentication successful ✅",
+  "Welcome to Aryan's Portfolio Terminal!"
+];
 
-  gsap.to(particlesMesh.rotation, {
-    x: y * 0.05,
-    y: x * 0.05,
-    duration: 1,
-    ease: "power2.out",
-  });
+let terminalIndex = 0, terminalCharIndex = 0;
+const terminalText = document.getElementById("terminal-text");
+const terminalScreen = document.getElementById("terminal-screen");
+
+function typeTerminalText() {
+  if (terminalIndex < terminalLines.length) {
+      if (terminalCharIndex < terminalLines[terminalIndex].length) {
+          terminalText.innerHTML += terminalLines[terminalIndex].charAt(terminalCharIndex);
+          terminalCharIndex++;
+          setTimeout(typeTerminalText, 50);
+      } else {
+          terminalText.innerHTML += "\n";
+          terminalCharIndex = 0;
+          terminalIndex++;
+          setTimeout(typeTerminalText, 500);
+      }
+  } else {
+      // After last line, fade out terminal and reveal site
+      setTimeout(() => {
+          terminalScreen.style.transition = "opacity 1s ease-out";
+          terminalScreen.style.opacity = "0";
+          setTimeout(() => { terminalScreen.style.display = "none"; }, 1000);
+      }, 1000);
+  }
+}
+
+// Start the typing animation when page loads
+document.addEventListener("DOMContentLoaded", () => {
+  typeTerminalText();
 });
