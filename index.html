@@ -3,22 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portfolio website of Aryan Varmora - AI, ML, and Software Development">
+  <meta name="description" content="Portfolio of Aryan Varmora - AI, ML, and Software Development">
   <meta name="keywords" content="Aryan Varmora, AI Engineer, Machine Learning, Software Developer, Portfolio">
   <meta name="author" content="Aryan Varmora">
   <meta property="og:title" content="Aryan Varmora - AI & ML Engineer">
   <meta property="og:description" content="Master's in CS | AI & ML Enthusiast | Open to Collaboration">
   <meta property="og:image" content="/assets/profile.jpg">
 
-  <title>Aryan's - Personal Website</title>
+  <title>Aryan Varmora - AI & ML Portfolio</title>
   <link rel="stylesheet" href="/assets/main.css">
 </head>
 <body>
 
+  <!-- Dark Mode Toggle -->
+  <button id="theme-toggle">🌙 Dark Mode</button>
+
   <!-- Hero Section -->
   <section id="hero">
-    <h1>Hi, I'm Aryan Varmora 👋</h1>
-    <p>AI & Machine Learning Enthusiast | Software Developer | Problem Solver</p>
+    <h1>Hi, I'm <span id="typing-text"></span> 👋</h1>
+    <p>AI & Machine Learning Enthusiast | Software Developer | Researcher</p>
     <a href="/projects.html" class="btn">View My Projects</a>
   </section>
 
@@ -38,53 +41,48 @@
     <section>
       <h2>About Me</h2>
       <p>
-        I am a **Computer Engineer** currently advancing my expertise with a **Master’s in Computer Science at Fordham University**, where I also serve as a **Graduate Assistant**.  
-        Passionate about **AI, Machine Learning, and Software Development**, I am working on cutting-edge research and projects.
+        I am a **Computer Engineer** currently pursuing my **Master’s in Computer Science at Fordham University**, where I also work as a **Graduate Assistant**.
+        Passionate about **AI, Machine Learning, and Software Development**, I specialize in building **intelligent systems** and **data-driven solutions**.
       </p>
     </section>
 
-    <!-- Featured Projects Section -->
+    <!-- Skills & Tech Stack -->
+    <section>
+      <h2>Technical Skills</h2>
+      <!-- Tech Stack with alt attributes -->
+        <div class="tech-stack">
+            <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python Programming Badge">
+            <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white" alt="TensorFlow AI Badge">
+            <img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white" alt="Java Programming Badge">
+         </div>
+  
+      
+    </section>
+
+    <!-- Featured Projects -->
     <section>
       <h2>Featured Projects</h2>
-      
       <div class="projects-grid">
-        <!-- Image Caption Generator -->
         <div class="project">
           <h3>Image Caption Generator</h3>
           <p>Generates descriptive captions for images using a CNN-LSTM architecture.</p>
           <a href="/projects/image-caption-generator.html" class="btn">Learn More</a>
         </div>
 
-        <!-- WildEye -->
         <div class="project">
           <h3>WildEye: AI-Powered Wildlife Detection</h3>
           <p>Detects and identifies wildlife in real-time using deep learning models.</p>
           <a href="/projects/wildeye.html" class="btn">Learn More</a>
         </div>
-
-        <!-- PrognosticEngine -->
-        <div class="project">
-          <h3>PrognosticEngine</h3>
-          <p>Predictive maintenance system estimating Remaining Useful Life (RUL) of equipment.</p>
-          <a href="/projects/prognosticengine.html" class="btn">Learn More</a>
-        </div>
-
-        <!-- InsightScribe -->
-        <div class="project">
-          <h3>InsightScribe</h3>
-          <p>Transforms raw data into dynamic visualizations and narrative insights.</p>
-          <a href="/projects/insightscribe.html" class="btn">Learn More</a>
-        </div>
-
-        <!-- GeoInsight -->
-        <div class="project">
-          <h3>GeoInsight</h3>
-          <p>Analyzes and visualizes geospatial data using GIS tools.</p>
-          <a href="/projects/geoinsight.html" class="btn">Learn More</a>
-        </div>
       </div>
-
       <p><a href="/projects.html" class="btn">View All Projects</a></p>
+    </section>
+
+    <!-- Contact Section -->
+    <section>
+      <h2>Contact Me</h2>
+      <p>Have a question or want to collaborate? Send me a message!</p>
+      <a href="/contact.html" class="btn">Get in Touch</a>
     </section>
   </main>
 
@@ -92,5 +90,35 @@
     <p>© 2025 Aryan Varmora. All rights reserved.</p>
   </footer>
 
+  <!-- JavaScript for Typing Animation & Dark Mode -->
+  <script>
+    // Typing Effect
+    const textArray = ["an AI & ML Engineer", "a Software Developer", "a Researcher"];
+    let index = 0, charIndex = 0;
+    function typeText() {
+        if (charIndex < textArray[index].length) {
+            document.getElementById("typing-text").innerHTML += textArray[index][charIndex++];
+            setTimeout(typeText, 100);
+        } else {
+            setTimeout(eraseText, 2000);
+        }
+    }
+    function eraseText() {
+        if (charIndex > 0) {
+            document.getElementById("typing-text").innerHTML = textArray[index].slice(0, --charIndex);
+            setTimeout(eraseText, 50);
+        } else {
+            index = (index + 1) % textArray.length;
+            setTimeout(typeText, 1000);
+        }
+    }
+    typeText();
+
+    // Dark Mode Toggle
+    const themeToggle = document.getElementById("theme-toggle");
+    themeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+    });
+  </script>
 </body>
 </html>
