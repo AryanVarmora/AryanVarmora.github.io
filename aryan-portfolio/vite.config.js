@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/aryan-portfolio/', // Update with your GitHub Pages repo name
+  base: '/AryanVarmora.github.io/', // Set repository name as base path
   build: {
     outDir: 'dist',
   },
